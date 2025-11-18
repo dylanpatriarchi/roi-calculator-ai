@@ -178,7 +178,7 @@ export default function Home() {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Scopri in meno di 2 minuti quanto denaro la tua azienda perde ogni anno senza l'utilizzo dell'AI.
+              Scopri in meno di 2 minuti quanto denaro la tua azienda perde ogni anno senza l&apos;utilizzo dell&apos;AI.
             </p>
 
             <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">

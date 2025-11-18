@@ -83,7 +83,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, onReset })
           <span ref={totalLossRef}>€0</span>
         </h2>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-4">
-          Questa è la cifra che la tua azienda sta perdendo ogni anno senza l'automazione AI.
+          Questa è la cifra che la tua azienda sta perdendo ogni anno senza l&apos;automazione AI.
         </p>
         <p className="text-sm text-gray-500 max-w-xl mx-auto italic">
           * Stima approssimativa basata sui dati forniti e su medie di settore
@@ -115,7 +115,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, onReset })
           <h3 className="text-lg font-semibold text-dark mb-2">Ore Automatizzabili</h3>
           <p ref={hoursWastedRef} className="text-3xl font-bold text-blue-600 mb-2">0 ore</p>
           <p className="text-sm text-gray-600">
-            Tempo totale che il tuo team spreca annualmente in attività che l'AI potrebbe gestire automaticamente.
+            Tempo totale che il tuo team spreca annualmente in attività che l&apos;AI potrebbe gestire automaticamente.
           </p>
         </div>
 
@@ -134,13 +134,13 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, onReset })
       {/* Insight Section */}
       <div className="bg-gradient-primary rounded-2xl p-8 text-white mb-8">
         <h3 className="text-2xl font-serif font-light mb-4">
-          Come l'AI Potrebbe Trasformare il Tuo Business
+          Come l&apos;AI Potrebbe Trasformare il Tuo Business
         </h3>
         <div className="space-y-3">
           <div className="flex items-start gap-3">
             <ArrowRight size={20} className="mt-1 flex-shrink-0" />
             <p className="text-white/90">
-              <strong>Risposta Istantanea:</strong> L'AI può rispondere ai lead in tempi molto rapidi, potenzialmente migliorando il tasso di conversione.
+              <strong>Risposta Istantanea:</strong> L&apos;AI può rispondere ai lead in tempi molto rapidi, potenzialmente migliorando il tasso di conversione.
             </p>
           </div>
           <div className="flex items-start gap-3">
@@ -152,7 +152,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, onReset })
           <div className="flex items-start gap-3">
             <ArrowRight size={20} className="mt-1 flex-shrink-0" />
             <p className="text-white/90">
-              <strong>ROI Potenziale:</strong> L'automazione AI potrebbe ripagarsi nel tempo grazie ai risparmi e ai ricavi aggiuntivi, ma i risultati variano caso per caso.
+              <strong>ROI Potenziale:</strong> L&apos;automazione AI potrebbe ripagarsi nel tempo grazie ai risparmi e ai ricavi aggiuntivi, ma i risultati variano caso per caso.
             </p>
           </div>
         </div>
@@ -183,7 +183,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, onReset })
           </Button>
         </div>
         <p className="text-sm text-gray-500 mt-4">
-          Nessun impegno. Ti mostreremo esattamente come l'AI può risolvere i tuoi problemi specifici.
+          Nessun impegno. Ti mostreremo esattamente come l&apos;AI può risolvere i tuoi problemi specifici.
         </p>
       </div>
 
@@ -194,7 +194,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, onReset })
           I risultati mostrati sono <strong>stime approssimative</strong> calcolate in base ai dati da te forniti e a statistiche medie di settore. 
           Non costituiscono una garanzia di risultati futuri né una consulenza finanziaria o professionale. 
           I risultati effettivi possono variare significativamente in base a numerosi fattori specifici della tua azienda, 
-          del settore, del mercato e dell'implementazione tecnologica. Questo strumento è fornito esclusivamente a scopo informativo 
+          del settore, del mercato e dell&apos;implementazione tecnologica. Questo strumento è fornito esclusivamente a scopo informativo 
           e non deve essere utilizzato come unico criterio per decisioni aziendali o investimenti. 
           Per una valutazione accurata e personalizzata, ti consigliamo di richiedere una consulenza professionale specifica.
         </p>

@@ -50,7 +50,7 @@ export const Step1Form: React.FC<Step1FormProps> = ({ data, onChange, onNext, er
         </p>
         <p className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg border border-gray-200">
           <strong>Nota sulla metodologia:</strong> Il calcolo si basa su 240 giorni lavorativi annui (48 settimane × 5 giorni). 
-          Assume che l'AI possa automatizzare circa il 40% delle attività ripetitive e migliorare le conversioni dell'8%. 
+          Assume che l&apos;AI possa automatizzare circa il 40% delle attività ripetitive e migliorare le conversioni dell&apos;8%. 
           I risultati sono stime approssimative che variano in base a molti fattori specifici.
         </p>
       </div>

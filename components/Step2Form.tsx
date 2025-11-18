@@ -48,7 +48,7 @@ export const Step2Form: React.FC<Step2FormProps> = ({ data, onChange, onNext, on
           Opportunità di Guadagno
         </h2>
         <p className="text-lg text-gray-600">
-          Ora valutiamo il potenziale di crescita del tuo business con l'utilizzo dell'AI.
+          Ora valutiamo il potenziale di crescita del tuo business con l&apos;utilizzo dell&apos;AI.
         </p>
       </div>
 
@@ -102,10 +102,10 @@ export const Step2Form: React.FC<Step2FormProps> = ({ data, onChange, onNext, on
             <div className="bg-gradient-primary p-6 rounded-lg text-white">
               <div className="flex-1">
                 <h3 className="text-xl font-semibold mb-2">
-                  Potenziale di Crescita con l'AI
+                  Potenziale di Crescita con l&apos;AI
                 </h3>
                 <p className="text-white/90 mb-4">
-                  Se rispondessi entro 1 minuto (grazie all'AI), le statistiche dicono che potresti migliorare le conversioni dell'<strong>8%</strong>. Siamo d'accordo?
+                  Se rispondessi entro 1 minuto (grazie all&apos;AI), le statistiche dicono che potresti migliorare le conversioni dell&apos;<strong>8%</strong>. Siamo d&apos;accordo?
                 </p>
                 <div className="flex gap-4">
                   <label className="flex items-center gap-2 cursor-pointer">
@@ -116,7 +116,7 @@ export const Step2Form: React.FC<Step2FormProps> = ({ data, onChange, onNext, on
                       onChange={() => onChange('agreeWith20PercentIncrease', true)}
                       className="w-5 h-5 accent-white"
                     />
-                    <span className="text-lg font-medium">Sì, sono d'accordo</span>
+                    <span className="text-lg font-medium">Sì, sono d&apos;accordo</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
