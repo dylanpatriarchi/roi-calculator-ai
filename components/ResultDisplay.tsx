@@ -71,132 +71,112 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, onReset })
   }, [result]);
 
   return (
-    <div ref={containerRef} className="w-full max-w-4xl mx-auto">
+    <div ref={containerRef} className="w-full max-w-4xl mx-auto text-black">
       {/* Main Result Header */}
-      <div className="text-center mb-12">
-        <div className="inline-block mb-4">
-          <div className="bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold">
-            Perdita Annuale Stimata
-          </div>
-        </div>
-        <h2 className="text-5xl md:text-7xl font-serif font-light text-dark mb-4">
+      <div className="text-center mb-16 pt-8">
+        <p className="text-sm font-medium tracking-widest text-primary uppercase mb-4">
+          Risultato Analisi
+        </p>
+        <h2 className="text-6xl md:text-8xl font-bold tracking-tight text-black mb-6">
           <span ref={totalLossRef}>€0</span>
         </h2>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-4">
-          Questa è la cifra che la tua azienda sta perdendo ogni anno senza l&apos;automazione AI.
-        </p>
-        <p className="text-sm text-gray-500 max-w-xl mx-auto italic">
-          * Stima approssimativa basata sui dati forniti e su medie di settore
+        <p className="text-xl text-secondaryGray max-w-xl mx-auto font-light">
+          Denaro stimato che la tua azienda &quot;lascia sul tavolo&quot; ogni anno.
         </p>
       </div>
 
-      {/* Breakdown Cards */}
-      <div ref={cardsRef} className="grid md:grid-cols-2 gap-6 mb-12">
-        {/* Salary Waste Card */}
-        <div className="result-card opacity-0 bg-gradient-to-br from-orange-50 to-white border border-orange-200 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300">
-          <h3 className="text-lg font-semibold text-dark mb-2">Spreco Stipendi</h3>
-          <p ref={salaryCostRef} className="text-3xl font-bold text-primary mb-2">€0</p>
-          <p className="text-sm text-gray-600">
-            Costo annuale delle ore perse dal team in attività ripetitive che potrebbero essere automatizzate.
+      {/* Breakdown Grid - Minimalist typography based */}
+      <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 mb-20">
+        {/* Salary Waste */}
+        <div className="result-card opacity-0 border-t border-gray-100 pt-6">
+          <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Efficienza Operativa</p>
+          <div className="flex items-baseline justify-between mb-2">
+             <h3 className="text-lg font-medium text-black">Spreco Stipendi</h3>
+             <p ref={salaryCostRef} className="text-2xl font-bold text-black">€0</p>
+          </div>
+          <p className="text-sm text-gray-500 leading-relaxed">
+            Costo delle ore perse in task manuali automatizzabili.
           </p>
         </div>
 
-        {/* Missed Revenue Card */}
-        <div className="result-card opacity-0 bg-gradient-to-br from-red-50 to-white border border-red-200 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300">
-          <h3 className="text-lg font-semibold text-dark mb-2">Mancato Guadagno</h3>
-          <p ref={missedRevenueRef} className="text-3xl font-bold text-red-600 mb-2">€0</p>
-          <p className="text-sm text-gray-600">
-            Ricavi potenziali persi per mancata conversione di lead che avresti potuto chiudere con risposte rapide.
+        {/* Missed Revenue */}
+        <div className="result-card opacity-0 border-t border-gray-100 pt-6">
+          <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Opportunità Commerciale</p>
+          <div className="flex items-baseline justify-between mb-2">
+             <h3 className="text-lg font-medium text-black">Mancato Fatturato</h3>
+             <p ref={missedRevenueRef} className="text-2xl font-bold text-black">€0</p>
+          </div>
+          <p className="text-sm text-gray-500 leading-relaxed">
+            Ricavi persi a causa dei tempi di risposta lenti.
           </p>
         </div>
 
-        {/* Time Wasted Card */}
-        <div className="result-card opacity-0 bg-gradient-to-br from-blue-50 to-white border border-blue-200 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300">
-          <h3 className="text-lg font-semibold text-dark mb-2">Ore Automatizzabili</h3>
-          <p ref={hoursWastedRef} className="text-3xl font-bold text-blue-600 mb-2">0 ore</p>
-          <p className="text-sm text-gray-600">
-            Tempo totale che il tuo team spreca annualmente in attività che l&apos;AI potrebbe gestire automaticamente.
-          </p>
+        {/* Time Wasted */}
+        <div className="result-card opacity-0 border-t border-gray-100 pt-6">
+            <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Tempo Recuperabile</p>
+            <div className="flex items-baseline justify-between mb-2">
+                 <h3 className="text-lg font-medium text-black">Ore/Anno</h3>
+                 <p ref={hoursWastedRef} className="text-2xl font-bold text-black">0 h</p>
+            </div>
+            <p className="text-sm text-gray-500 leading-relaxed">
+                Ore di lavoro annuali che potresti reinvestire.
+            </p>
         </div>
 
-        {/* Leads Lost Card */}
-        <div className="result-card opacity-0 bg-gradient-to-br from-purple-50 to-white border border-purple-200 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300">
-          <h3 className="text-lg font-semibold text-dark mb-2">Lead Persi</h3>
-          <p className="text-3xl font-bold text-purple-600 mb-2">
-            {Math.round(result.leadsLost).toLocaleString('it-IT')}
-          </p>
-          <p className="text-sm text-gray-600">
-            Numero stimato di lead che non si convertono in clienti a causa di tempi di risposta lenti.
-          </p>
+        {/* Leads Lost */}
+        <div className="result-card opacity-0 border-t border-gray-100 pt-6">
+             <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Pipeline</p>
+             <div className="flex items-baseline justify-between mb-2">
+                 <h3 className="text-lg font-medium text-black">Lead Persi</h3>
+                 <p className="text-2xl font-bold text-black">
+                    {Math.round(result.leadsLost).toLocaleString('it-IT')}
+                 </p>
+            </div>
+            <p className="text-sm text-gray-500 leading-relaxed">
+                Potenziali clienti persi ogni anno.
+            </p>
         </div>
       </div>
 
-      {/* Insight Section */}
-      <div className="bg-gradient-primary rounded-2xl p-8 text-white mb-8">
-        <h3 className="text-2xl font-serif font-light mb-4">
-          Come l&apos;AI Potrebbe Trasformare il Tuo Business
+      {/* Insight Section - Clean Text */}
+      <div className="bg-gray-50 rounded-2xl p-10 mb-12">
+        <h3 className="text-2xl font-bold text-black mb-6">
+          Il vantaggio Rayo
         </h3>
-        <div className="space-y-3">
-          <div className="flex items-start gap-3">
-            <ArrowRight size={20} className="mt-1 flex-shrink-0" />
-            <p className="text-white/90">
-              <strong>Risposta Istantanea:</strong> L&apos;AI può rispondere ai lead in tempi molto rapidi, potenzialmente migliorando il tasso di conversione.
-            </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <ArrowRight size={20} className="mt-1 flex-shrink-0" />
-            <p className="text-white/90">
-              <strong>Automazione Intelligente:</strong> Libera il tuo team dalle attività ripetitive, permettendogli di concentrarsi su compiti ad alto valore.
-            </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <ArrowRight size={20} className="mt-1 flex-shrink-0" />
-            <p className="text-white/90">
-              <strong>ROI Potenziale:</strong> L&apos;automazione AI potrebbe ripagarsi nel tempo grazie ai risparmi e ai ricavi aggiuntivi, ma i risultati variano caso per caso.
-            </p>
-          </div>
-        </div>
+        <ul className="space-y-4">
+          <li className="flex gap-4">
+             <span className="text-primary font-bold">•</span>
+             <p className="text-gray-700"><strong>Risposta 24/7:</strong> L&apos;AI qualifica e converte i lead istantaneamente, a qualsiasi ora.</p>
+          </li>
+          <li className="flex gap-4">
+             <span className="text-primary font-bold">•</span>
+             <p className="text-gray-700"><strong>Zero Sprechi:</strong> Elimina il data entry manuale e riduci i costi operativi.</p>
+          </li>
+        </ul>
       </div>
 
       {/* Call to Action */}
-      <div className="text-center space-y-4">
-        <h3 className="text-2xl font-serif font-light text-dark mb-4">
-          Pronto a Recuperare Questi Soldi?
-        </h3>
+      <div className="text-center space-y-6">
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button
             size="lg"
             onClick={() => window.open('https://calendly.com/rayo-info/30min', '_blank')}
-            className="text-lg"
+            className="text-lg bg-primary hover:opacity-90 active:scale-95 text-white px-8"
           >
             Prenota Consulenza Gratuita
-            <ArrowRight size={20} />
           </Button>
           <Button
             variant="outline"
             size="lg"
             onClick={onReset}
-            className="text-lg"
+            className="text-lg border-gray-200 text-black hover:bg-gray-50"
           >
-            <RotateCcw size={20} />
-            Calcola di Nuovo
+            <RotateCcw size={18} className="mr-2" />
+            Ricalcola
           </Button>
         </div>
-        <p className="text-sm text-gray-500 mt-4">
-          Nessun impegno. Ti mostreremo esattamente come l&apos;AI può risolvere i tuoi problemi specifici.
-        </p>
-      </div>
-
-      {/* Legal Disclaimer */}
-      <div className="mt-12 p-6 bg-gray-50 rounded-xl border border-gray-200">
-        <h4 className="text-sm font-semibold text-dark mb-2">Disclaimer Importante</h4>
-        <p className="text-xs text-gray-600 leading-relaxed">
-          I risultati mostrati sono <strong>stime approssimative</strong> calcolate in base ai dati da te forniti e a statistiche medie di settore. 
-          Non costituiscono una garanzia di risultati futuri né una consulenza finanziaria o professionale. 
-          I risultati effettivi possono variare significativamente in base a numerosi fattori specifici della tua azienda, 
-          del settore, del mercato e dell&apos;implementazione tecnologica. Questo strumento è fornito esclusivamente a scopo informativo 
-          e non deve essere utilizzato come unico criterio per decisioni aziendali o investimenti. 
-          Per una valutazione accurata e personalizzata, ti consigliamo di richiedere una consulenza professionale specifica.
+        <p className="text-xs text-gray-400 max-w-2xl mx-auto leading-relaxed pt-8">
+          Disclaimer: I risultati sono stime basate su benchmark di settore. I risultati effettivi possono variare.
         </p>
       </div>
     </div>

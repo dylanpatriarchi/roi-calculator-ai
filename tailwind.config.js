@@ -9,32 +9,20 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#FF5722',
-          light: '#FF8C00',
-          dark: '#E64A19',
+          DEFAULT: '#3B82F6', // Electric Blue
+          hover: '#2563EB',   // Darker blue for hover states
         },
-        secondary: {
-          DEFAULT: '#FFFFFF',
-        },
-        dark: {
-          DEFAULT: '#1A1A1A',
-          light: '#333333',
-        },
-        accent: {
-          DEFAULT: '#F0F0F0',
-        },
+        secondaryGray: '#6B7280', 
       },
       fontFamily: {
-        serif: ['var(--font-instrument-serif)', 'serif'],
         sans: ['var(--font-inter)', 'sans-serif'],
       },
-      fontWeight: {
-        'thin-serif': '300',
+      scale: {
+        '95': '0.95',
       },
-      backgroundImage: {
-        'gradient-primary': 'linear-gradient(to bottom right, #FF5722, #FFA500)',
-        'gradient-soft': 'linear-gradient(to bottom, #FF5722, rgba(255, 87, 34, 0.1))',
-      },
+      letterSpacing: {
+        tight: '-0.025em',
+      }
     },
   },
   plugins: [],

@@ -18,7 +18,7 @@ export const InputField: React.FC<InputFieldProps> = ({
 }) => {
   return (
     <div className="w-full">
-      <label className="block text-sm font-medium text-dark mb-2">
+      <label className="block text-sm font-medium text-black mb-2">
         {label}
       </label>
       <div className="relative">

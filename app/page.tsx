@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Step1Form } from '@/components/Step1Form';
 import { Step2Form } from '@/components/Step2Form';
 import { ResultDisplay } from '@/components/ResultDisplay';
+import { Footer } from '@/components/Footer';
 import { Sparkles, ChevronRight } from 'lucide-react';
 import { calculateROI } from '@/lib/calculations';
 import type { CalculationResult } from '@/lib/calculations';
@@ -145,12 +146,23 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-white">
-      {/* Progress Bar */}
+    <main className="min-h-screen bg-white text-black flex flex-col font-sans">
+      {/* Absolute Minimalist Header */}
+      <nav className="w-full px-6 py-6 flex justify-between items-center bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+        <div className="w-10 h-10 relative">
+             {/* Using the requested 2.svg as logo */}
+             <img src="/2.svg" alt="Rayo Consulting" className="w-full h-full object-contain" />
+        </div>
+        <div>
+            {/* Optional minimalist nav items could go here */}
+        </div>
+      </nav>
+
+      {/* Progress Bar - Minimalist Line */}
       {currentStep !== 'intro' && (
-        <div className="fixed top-0 left-0 right-0 h-1 bg-gray-200 z-50">
+        <div className="fixed top-0 left-0 right-0 h-0.5 bg-gray-100 z-50">
           <div
-            className="h-full bg-gradient-primary transition-all duration-500 ease-out"
+            className="h-full bg-primary transition-all duration-500 ease-out"
             style={{
               width:
                 currentStep === 'step1'
@@ -164,49 +176,41 @@ export default function Home() {
       )}
 
       {/* Content Container */}
-      <div className="container mx-auto px-4 py-12 md:py-20">
+      <div className="flex-grow container mx-auto px-4 py-20 md:py-32 max-w-3xl">
         {/* Intro Screen */}
         {currentStep === 'intro' && (
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-8 inline-flex items-center gap-2 bg-gradient-primary text-white px-4 py-2 rounded-full text-sm font-semibold">
-              <Sparkles size={18} />
-              Strumento di Analisi Gratuito
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-serif font-light text-dark mb-6">
-              Quanto Sta <span className="text-primary">Perdendo</span> la Tua Azienda?
+          <div className="text-center space-y-8 animate-in fade-in zoom-in duration-500">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-black leading-tight">
+              Quanto perde <br className="hidden md:block"/> la tua azienda?
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Scopri in meno di 2 minuti quanto denaro la tua azienda perde ogni anno senza l&apos;utilizzo dell&apos;AI.
+            <p className="text-xl md:text-2xl text-secondaryGray font-light max-w-2xl mx-auto leading-relaxed">
+              In 2 minuti, calcola il costo nascosto delle inefficienze <br className="hidden md:block"/> e scopri il ROI dell&apos;automazione AI.
             </p>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
-              <div className="bg-accent rounded-xl p-6">
-                <div className="text-4xl font-bold text-primary mb-2">2 min</div>
-                <div className="text-sm text-gray-600">Tempo richiesto</div>
-              </div>
-              <div className="bg-accent rounded-xl p-6">
-                <div className="text-4xl font-bold text-primary mb-2">100%</div>
-                <div className="text-sm text-gray-600">Gratuito e senza impegno</div>
-              </div>
-              <div className="bg-accent rounded-xl p-6">
-                <div className="text-4xl font-bold text-primary mb-2">ROI</div>
-                <div className="text-sm text-gray-600">Risultato personalizzato</div>
-              </div>
+            <div className="pt-8">
+                <button
+                onClick={handleNextStep}
+                className="bg-primary text-white px-10 py-4 rounded-lg text-lg font-medium hover:opacity-90 active:scale-95 transition-all duration-200 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                >
+                Inizia il Calcolo
+                </button>
             </div>
 
-            <button
-              onClick={handleNextStep}
-              className="bg-gradient-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2"
-            >
-              Inizia il Calcolo
-              <ChevronRight size={24} />
-            </button>
-
-            <p className="text-xs text-gray-500 mt-6 max-w-2xl mx-auto">
-              <strong>Nota:</strong> I risultati forniti da questo calcolatore sono stime approssimative basate su dati generici di settore e non costituiscono una consulenza professionale. I risultati effettivi possono variare significativamente in base al contesto specifico della tua azienda.
-            </p>
+            <div className="pt-12 grid grid-cols-3 gap-8 max-w-lg mx-auto border-t border-gray-100 mt-12">
+               <div>
+                   <span className="block text-2xl font-bold text-black">2 min</span>
+                   <span className="text-xs text-secondaryGray uppercase tracking-wider">Tempo</span>
+               </div>
+               <div>
+                   <span className="block text-2xl font-bold text-black">100%</span>
+                   <span className="text-xs text-secondaryGray uppercase tracking-wider">Gratuito</span>
+               </div>
+               <div>
+                   <span className="block text-2xl font-bold text-black">ROI</span>
+                   <span className="text-xs text-secondaryGray uppercase tracking-wider">Analisi</span>
+               </div>
+            </div>
           </div>
         )}
 
@@ -246,18 +250,7 @@ export default function Home() {
         )}
       </div>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-200 py-8 mt-20">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-600 text-sm mb-2">
-            © {new Date().getFullYear()} Rayo Consulting di Patriarchi Dylan. Tutti i diritti riservati.
-          </p>
-          <p className="text-xs text-gray-500 max-w-3xl mx-auto">
-            I calcoli ROI forniti sono stime approssimative a scopo puramente informativo e non costituiscono consulenza finanziaria o professionale. 
-            I risultati effettivi possono variare. Consultare sempre un professionista per decisioni aziendali importanti.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

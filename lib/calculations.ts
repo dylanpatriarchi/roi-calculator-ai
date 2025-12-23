@@ -1,6 +1,6 @@
 /**
  * ROI Calculation Logic
- * All business logic for calculating ROI estimates
+ * All business logic for calculating ROI estimates - Italian Market Specific
  */
 
 export interface CalculationInput {
@@ -21,57 +21,47 @@ export interface CalculationResult {
   leadsLost: number;
 }
 
-// Constants based on realistic work year
+// Italian Market Constants
+const WORKING_WEEKS_PER_YEAR = 44; // Considered holidays, sickness, permits (standard working year ~220 days)
 const WORKING_DAYS_PER_WEEK = 5;
-const WORKING_WEEKS_PER_YEAR = 48; // 52 weeks - 4 weeks vacation/holidays
-const WORKING_DAYS_PER_YEAR = WORKING_DAYS_PER_WEEK * WORKING_WEEKS_PER_YEAR; // 240 days
-const AI_EFFICIENCY_GAIN = 0.40; // AI can automate 40% of repetitive tasks (conservative estimate)
-const CONVERSION_IMPROVEMENT = 0.08; // 8% improvement in conversion rate (realistic based on industry data)
+const WORKING_DAYS_PER_YEAR = WORKING_WEEKS_PER_YEAR * WORKING_DAYS_PER_WEEK; // 220 days
+const EMPLOYER_COST_MULTIPLIER = 1.0; // Input is already "Grosso Cost", but we ensure logic treats it as full cost.
+const AI_EFFICIENCY_GAIN = 0.40; // 40% automation potential
+const CONVERSION_IMPROVEMENT = 0.08; // 8% uplift
 
 /**
  * Calculate ROI based on user input
- * 
- * Formula breakdown:
- * 1. Salary Cost = (hours per person per day × 240 working days × team size × 40% AI efficiency) × hourly cost
- * 2. Missed Revenue = (leads per year × conversion improvement × customer lifetime value)
- * 3. Total Loss = Salary Cost + Missed Revenue
- * 
- * @param input - User provided data from the form
- * @returns Calculation results with breakdown
  */
 export function calculateROI(input: CalculationInput): CalculationResult {
-  // Calculate hours that could be automated per year
-  // hoursPerDay is the time ONE person spends on repetitive tasks daily
+  // 1. Efficiency / Salary Savings
+  // We assume 'hourlyCost' provided by user includes RAL + contributions (Costo Azienda)
   const hoursPerPersonPerYear = input.hoursPerDay * WORKING_DAYS_PER_YEAR;
   const totalHoursAllTeamPerYear = hoursPerPersonPerYear * input.teamSize;
+  
+  // Total hours that can be automated
   const hoursAutomatablePerYear = totalHoursAllTeamPerYear * AI_EFFICIENCY_GAIN;
 
-  // Calculate salary cost savings (what you spend on repetitive work that AI could do)
-  const salaryCost = hoursAutomatablePerYear * input.hourlyCost;
+  // Monetary saving
+  const salaryCost = hoursAutomatablePerYear * input.hourlyCost * EMPLOYER_COST_MULTIPLIER;
 
-  // Calculate missed revenue (conservative approach)
+  // 2. Missed Revenue Opportunity
   let missedRevenue = 0;
   let leadsLost = 0;
   
   if (input.agreeWith20PercentIncrease) {
-    const currentClosingRateDecimal = input.currentClosingRate / 100;
+    const currentRate = input.currentClosingRate / 100;
     
-    // Multiplicative improvement (more realistic than additive)
-    // Example: 10% conversion becomes 10.8% (10% × 1.08)
-    const improvedClosingRate = Math.min(
-      currentClosingRateDecimal * (1 + CONVERSION_IMPROVEMENT),
-      0.90 // Cap at 90% to be realistic - no one has perfect conversion
-    );
+    // Improvement calc
+    // If current is 10%, new is 10.8%
+    const improvedRate = Math.min(currentRate * (1 + CONVERSION_IMPROVEMENT), 0.95);
+    const rateDifference = improvedRate - currentRate;
     
-    const conversionIncrease = improvedClosingRate - currentClosingRateDecimal;
     const leadsPerYear = input.leadsPerMonth * 12;
-    leadsLost = leadsPerYear * conversionIncrease;
+    leadsLost = leadsPerYear * rateDifference;
     
-    // Missed revenue from lost conversions
     missedRevenue = leadsLost * input.customerLifetimeValue;
   }
 
-  // Calculate total loss
   const totalLoss = salaryCost + missedRevenue;
 
   return {
@@ -84,14 +74,14 @@ export function calculateROI(input: CalculationInput): CalculationResult {
 }
 
 /**
- * Get a human-readable explanation of the calculation methodology
+ * Explanation text
  */
 export function getCalculationExplanation(): string {
   return `
-Metodologia di calcolo:
-- Anno lavorativo: ${WORKING_WEEKS_PER_YEAR} settimane × ${WORKING_DAYS_PER_WEEK} giorni = ${WORKING_DAYS_PER_YEAR} giorni
-- Efficienza AI: ${AI_EFFICIENCY_GAIN * 100}% delle attività ripetitive possono essere automatizzate
-- Miglioramento conversioni: ${CONVERSION_IMPROVEMENT * 100}% con risposta rapida AI
+Base di calcolo (Mercato Italia):
+- Giorni lavorativi annui: ${WORKING_DAYS_PER_YEAR} (netto ferie/permessi)
+- Automazione stimata: ${AI_EFFICIENCY_GAIN * 100}% su task ripetitivi
+- Uplift conversioni: +${CONVERSION_IMPROVEMENT * 100}% (risposta istantanea)
   `.trim();
 }
 

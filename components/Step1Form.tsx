@@ -41,38 +41,33 @@ export const Step1Form: React.FC<Step1FormProps> = ({ data, onChange, onNext, er
 
   return (
     <div ref={containerRef} className="w-full max-w-2xl mx-auto">
-      <div className="mb-8">
-        <h2 className="text-4xl md:text-5xl font-serif font-light text-dark mb-4">
-          Informazioni sul Tuo Team
+      <div className="mb-12">
+        <h2 className="text-4xl font-bold tracking-tight text-black mb-4">
+          Il tuo Team
         </h2>
-        <p className="text-lg text-gray-600 mb-3">
-          Iniziamo a capire quanto tempo il tuo team dedica ad attività ripetitive che potrebbero essere automatizzate.
-        </p>
-        <p className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg border border-gray-200">
-          <strong>Nota sulla metodologia:</strong> Il calcolo si basa su 240 giorni lavorativi annui (48 settimane × 5 giorni). 
-          Assume che l&apos;AI possa automatizzare circa il 40% delle attività ripetitive e migliorare le conversioni dell&apos;8%. 
-          I risultati sono stime approssimative che variano in base a molti fattori specifici.
+        <p className="text-lg text-secondaryGray">
+          Analizziamo i costi operativi delle attività manuali.
         </p>
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div ref={fieldsRef} className="space-y-6">
+        <div ref={fieldsRef} className="space-y-8">
           <div className="input-field opacity-0">
             <InputField
-              label="Quante persone nel tuo team si occupano di rispondere a email/chat o inserire dati?"
+              label="Membri del team operativi"
               type="number"
               min="1"
               value={data.teamSize || ''}
               onChange={(e) => onChange('teamSize', parseFloat(e.target.value))}
               error={errors.teamSize}
-              placeholder="es. 5"
+              placeholder="0"
               required
             />
           </div>
 
           <div className="input-field opacity-0">
             <InputField
-              label="Quante ore al giorno stimi che perdano in queste attività ripetitive?"
+              label="Ore giornaliere perse in attività ripetitive/manuali"
               type="number"
               min="0.5"
               max="24"
@@ -80,32 +75,33 @@ export const Step1Form: React.FC<Step1FormProps> = ({ data, onChange, onNext, er
               value={data.hoursPerDay || ''}
               onChange={(e) => onChange('hoursPerDay', parseFloat(e.target.value))}
               error={errors.hoursPerDay}
-              helperText="Inserisci un valore approssimativo (es. 2.5 per 2 ore e mezza)"
-              placeholder="es. 3"
+              helperText="Per persona (es. data entry, email, ricerca)"
+              placeholder="0.0"
               required
             />
           </div>
 
           <div className="input-field opacity-0">
             <InputField
-              label="Qual è il costo orario medio lordo di un dipendente? (€)"
+              label="Costo orario medio lordo (€)"
               type="number"
               min="1"
               step="0.01"
               value={data.hourlyCost || ''}
               onChange={(e) => onChange('hourlyCost', parseFloat(e.target.value))}
               error={errors.hourlyCost}
-              helperText="Considera lo stipendio lordo + contributi, diviso per le ore lavorative mensili"
-              placeholder="es. 25"
+              helperText="RAL + Contributi / Ore lavorate"
+              placeholder="0.00"
               required
             />
           </div>
 
-          <div className="input-field opacity-0 pt-4">
+          <div className="input-field opacity-0 pt-8">
             <Button
               type="submit"
               size="lg"
               fullWidth
+              className="bg-primary hover:opacity-90 active:scale-95 text-white rounded-lg py-4 text-lg font-medium transition-all"
             >
               Continua
             </Button>
